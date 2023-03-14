@@ -1,0 +1,59 @@
+{
+    "name": "swow-cloud/openai-swow",
+    "description": "A skeleton repository for my packages",
+    "keywords": ["php", "skeleton", "package"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "He Ping",
+            "email": "847050412@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "swow/swow": ">=1.1",
+        "swow/swow-php-cs-fixer-config": "dev-develop"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.15",
+        "pestphp/pest": "^1.22.0",
+        "phpstan/phpstan": "^1.9.11",
+        "rector/rector": "^0.15.21",
+        "symfony/var-dumper": "^6.2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "SwowCloud\\OpenAI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php --ri swow "
+        ],
+        "test:cs-fix": "php-cs-fixer fix $1",
+        "refactor": "rector --debug",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always",
+        "test:refactor": "rector --dry-run",
+        "test": [
+            "@test:cs-fix",
+            "@test:types",
+            "@test:unit",
+            "@test:refactor"
+        ]
+    }
+}
